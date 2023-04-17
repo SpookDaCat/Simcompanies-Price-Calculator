@@ -4,3 +4,4 @@ https://www.simcompanies.com/api/v3/market/0/{resource value}/
 Maybe add discounts/add ons
 
 Have market id and names be autocomplete
+format money strings
