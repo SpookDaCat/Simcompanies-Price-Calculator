@@ -56,7 +56,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "SimCompanies Price Calculator";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox1
             // 
@@ -212,7 +211,6 @@
             this.textBox9.Size = new System.Drawing.Size(82, 27);
             this.textBox9.TabIndex = 5;
             this.textBox9.Text = "$470.00";
-            this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
             // 
             // button1
             // 

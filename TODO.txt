@@ -1,0 +1,4 @@
+Pull in from API
+https://www.simcompanies.com/api/v3/market/0/{resource value}/
+
+Maybe add discounts/add ons
