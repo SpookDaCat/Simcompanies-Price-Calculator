@@ -45,6 +45,17 @@ namespace Simcompanies_Price_Calculator {
         }
 
         public void RefreshMarketData() {
+
+            // validation
+            if (!int.TryParse(this.MarketIDTextBox.Text, out int id) || !MarketIndexer.Keys.Contains(id)) {
+                MessageBox.Show("Your Market Id value seems corrupt. It cannot be converted to Int");
+                return;
+            }
+            if (!int.TryParse(this.QualityTextBox.Text, out int q) || q < 0) {
+                MessageBox.Show("Quality must be an positive integer");
+                return;
+            }
+
             Items = client.GetMarketData(this.MarketIDTextBox.Text).OrderBy(x => x.Price).ToList();
             CheapestItem = GetCheapestItem();
             decimal marketPrice = CheapestItem.Price;
