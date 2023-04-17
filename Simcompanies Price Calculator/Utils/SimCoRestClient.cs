@@ -9,9 +9,9 @@ public class SimCoRestClient {
     };
     private RestClient client = new RestClient(options);
     
-    public async Task<List<MarketItem>> GetMarketData(string ItemID) {
+    public List<MarketItem> GetMarketData(string ItemID) {
         var request = new RestRequest($"/api/v3/market/0/{ItemID}/", Method.Get);
-        RestResponse response = await client.ExecuteAsync(request);
+        RestResponse response = client.Execute(request);
         if (response?.Content == null) return new List<MarketItem>();
         return JsonConvert.DeserializeObject<List<MarketItem>>(response.Content) ?? new List<MarketItem>();
     }
