@@ -5,10 +5,10 @@ using System.Linq;
 namespace Simcompanies_Price_Calculator {
     public partial class Dashboard : Form {
         private SimCoRestClient client = new SimCoRestClient();
-        public List<MarketItem> Items { get; set; }
+        public List<MarketItem> Items { get; set; } = new List<MarketItem>();
         public Dictionary<int, string> MarketIndexer { get; set; }
 
-        public MarketItem CheapestItem { get; set; }
+        public MarketItem CheapestItem { get; set; }= new MarketItem();
 
         public Dashboard() {
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace Simcompanies_Price_Calculator {
         public void RefreshMarketData() {
 
             // validation
-            if (!int.TryParse(this.MarketIDTextBox.Text, out int id) || !MarketIndexer.Keys.Contains(id)) {
+            if (!int.TryParse(this.MarketIDTextBox.Text, out int id) || !MarketIndexer.ContainsKey(id)) {
                 MessageBox.Show("Your Market Id value seems corrupt. It cannot be converted to Int");
                 return;
             }
@@ -106,11 +106,13 @@ namespace Simcompanies_Price_Calculator {
 
         private void MCCostTextBox_Leave(object sender, EventArgs e) {
             var self = sender as TextBox;
+            if (self == null) return;
             if (!self.Text.StartsWith("$")) self.Text = "$"+self.Text;
         }
 
         private void MPPercentTextBox_Leave(object sender, EventArgs e) {
             var self = sender as TextBox;
+            if (self == null) return;
             if (!self.Text.EndsWith("%")) self.Text = self.Text + "%";
         }
     }
