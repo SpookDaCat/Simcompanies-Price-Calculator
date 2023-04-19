@@ -1,0 +1,1 @@
+start "Simcompanies Price Calculator"\bin\Debug\net6.0-windows\"Simcompanoes Price Calculator.exe"

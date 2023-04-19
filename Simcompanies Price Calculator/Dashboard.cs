@@ -64,8 +64,11 @@ namespace Simcompanies_Price_Calculator {
             this.MP25TextBox.Text = Math.Round(marketPrice * 0.975m, 2).ToString("C", CultureInfo.CurrentCulture);
             this.MP3TextBox.Text = Math.Round(marketPrice * 0.97m, 2).ToString("C", CultureInfo.CurrentCulture);
 
-            this.MPCostTextBox.Text = this.MPTextBox.Text;
+            if (decimal.TryParse(this.MPPercentTextBox.Text.Replace("%",""), out decimal bigPercent)) {
+                this.MPCostTextBox.Text = Math.Round(marketPrice * (100 - bigPercent) / 100, 2).ToString("C", CultureInfo.CurrentCulture);
+            }
             this.MCCostTextBox.Text = this.MPTextBox.Text;
+            this.MCPercentTextBox.Text = "0.0%";
         }
 
         private void RefreshButton_Click(object sender, EventArgs e) {
@@ -107,6 +110,9 @@ namespace Simcompanies_Price_Calculator {
         private void MCCostTextBox_Leave(object sender, EventArgs e) {
             var self = sender as TextBox;
             if (self == null) return;
+            if (self.Text == "") {
+                self.Text = "0%";
+            }
             if (!self.Text.StartsWith("$")) self.Text = "$"+self.Text;
         }
 
